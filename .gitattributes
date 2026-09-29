@@ -1,0 +1,12 @@
+# Normaliza quebras de linha: LF no repositório (o build roda em Linux/Docker).
+* text=auto eol=lf
+
+# Binários — nunca converter.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.svg text eol=lf
+*.pdf binary
+*.woff binary
+*.woff2 binary

@@ -1,0 +1,60 @@
+---
+import Base from "../../../layouts/Base.astro";
+import NavSecoes from "../../../components/NavSecoes.astro";
+import { apostilas, todasSecoes, vizinhasNaApostila, type Secao } from "../../../lib/acervo";
+import { render } from "astro:content";
+
+export async function getStaticPaths() {
+  const secoes = await todasSecoes();
+  const grupos = await apostilas();
+  return Promise.all(secoes.map(async (s) => {
+    const grupo = grupos.find((g) => g.numero === s.data.apostila)!;
+    return {
+      params: { num: s.data.apostila, secao: String(s.data.secao) },
+      props: { secaoEntry: s, grupo, ...(await vizinhasNaApostila(s.id)) },
+    };
+  }));
+}
+const { secaoEntry, grupo, anterior, proxima } = Astro.props as {
+  secaoEntry: Secao; grupo: any; anterior?: Secao; proxima?: Secao;
+};
+const { Content } = await render(secaoEntry);
+const d = secaoEntry.data;
+---
+<Base titulo={`${d.titulo} — ${d.apostilaTitulo}`} secao="curso">
+  <div class="apostila-layout">
+    <article data-pagefind-body class="apostila-artigo">
+      <header class="cabeca-secao">
+        <p class="trilha-de-pao" data-pagefind-ignore><a href="/curso/">O Curso</a></p>
+        <div class="etiquetas">
+          <span class="etiq etiq-apostila">
+            <span class="etiq-rot">Apostila {d.apostila}</span>
+            <span class="etiq-val">{d.apostilaTitulo}</span>
+          </span>
+          <span class="etiq etiq-secao">
+            <span class="etiq-rot">Seção {d.secao} de {d.totalSecoes}</span>
+            <span class="etiq-val">{d.titulo}</span>
+          </span>
+        </div>
+        <h1>{d.titulo}</h1>
+      </header>
+
+      <NavSecoes anterior={anterior} proxima={proxima} variante="topo" />
+
+      <div class="leitura apostila"><Content /></div>
+
+      <NavSecoes anterior={anterior} proxima={proxima} variante="fim" />
+    </article>
+
+    <aside class="indice-apostila" aria-label="Seções desta apostila" data-pagefind-ignore>
+      <p class="ia-tit"><span class="ia-num">Apostila {d.apostila}</span>{d.apostilaTitulo}</p>
+      <ol>
+        {grupo.secoes.map((s: Secao) => (
+          <li class={s.data.secao === d.secao ? "atual" : ""}>
+            <a href={`/apostila/${s.data.apostila}/${s.data.secao}/`} aria-current={s.data.secao === d.secao ? "true" : undefined}>{s.data.titulo}</a>
+          </li>
+        ))}
+      </ol>
+    </aside>
+  </div>
+</Base>

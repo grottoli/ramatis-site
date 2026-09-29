@@ -1,0 +1,41 @@
+---
+import Base from "../layouts/Base.astro";
+import { apostilas } from "../lib/acervo";
+import { areasDisponiveis } from "../data/areas";
+import site from "../data/site.json";
+const lista = await apostilas();
+const totalApostilas = lista.length;
+const areas = areasDisponiveis();
+const estrelas = [[8,22],[18,55],[27,15],[38,68],[49,30],[61,60],[72,20],[80,48],[90,35],[14,78],[55,82],[68,88],[33,90],[44,12],[86,72]];
+---
+<Base>
+  <section class="ceu">
+    <div class="estrelas" aria-hidden="true">
+      {estrelas.map(([x,y]) => <span style={`left:${x}%;top:${y}%`}></span>)}
+    </div>
+    <div class="ceu-conteudo">
+      <img class="ceu-retrato" src="/ramatis-medalhao.png" alt="Retrato psicopictografado de Ramatís" width="132" height="132" />
+      <p class="ceu-eyebrow">Fraternidade Ramatís de Curitiba</p>
+      <h1>{site.nome}</h1>
+      <p class="tagline">{site.lema}</p>
+      <p class="intro">{site.descricaoSite}</p>
+    </div>
+  </section>
+
+  <p class="secao-titulo">Áreas de estudo</p>
+  <ul class="areas">
+    {areas.map((a) => (
+      <li class="area-card">
+        <a href={a.href}>
+          <span class="area-tipo">{a.tipo}</span>
+          <span class="area-tit">{a.titulo}</span>
+          <span class="area-desc">{a.descricao}</span>
+          <span class="area-meta">
+            {a.id === "curso" ? `${totalApostilas} de 19 apostilas publicadas` : ""}
+            <span class="area-seta" aria-hidden="true">Entrar →</span>
+          </span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</Base>

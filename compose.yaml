@@ -1,0 +1,30 @@
+# Stack do site — coloque o repositório em /opt/stacks/ramatis
+name: ramatis
+
+services:
+  site:
+    build:
+      context: .
+      args:
+        SITE_URL: ${SITE_URL:-http://localhost:8080}
+    image: ramatis-site:latest
+    container_name: ramatis-site
+    restart: unless-stopped
+    ports:
+      - "${PORTA_LOCAL:-8088}:8080"   # acesso pela LAN/Tailscale
+    read_only: true
+    tmpfs: [/tmp, /data, /config]
+    security_opt: [no-new-privileges:true]
+
+  # Publicação na internet sem abrir portas no roteador.
+  # Suba com: docker compose --profile publico up -d
+  cloudflared:
+    profiles: [publico]
+    image: cloudflare/cloudflared:latest
+    container_name: ramatis-tunnel
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_TOKEN:-}
+    depends_on: [site]
+    security_opt: [no-new-privileges:true]

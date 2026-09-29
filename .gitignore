@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.astro/
+.env
+
+# PDFs-fonte das apostilas: pesados e já guardados no Google Drive.
+# São só a matéria-prima da extração; o site usa o conteúdo já gerado
+# em src/content/ e as imagens em public/apostilas/.
+fontes/
+
+# Diretório de trabalho do assistente
+.claude/

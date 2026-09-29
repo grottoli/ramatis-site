@@ -1,0 +1,28 @@
+---
+import Base from "../../layouts/Base.astro";
+import { apostilas } from "../../lib/acervo";
+import site from "../../data/site.json";
+const lista = await apostilas();
+---
+<Base titulo="O Curso" secao="curso">
+  <header class="cabeca">
+    <p class="modulo-rot">Curso · 1º módulo · Introdução ao estudo das obras de Ramatís</p>
+    <h1>{site.curso}</h1>
+    <p class="subtitulo">As apostilas do curso, na ordem original. Cada apostila é dividida em seções para leitura.</p>
+  </header>
+  <ol class="sumario-apostilas">
+    {lista.map((a) => (
+      <li class="apostila-card">
+        <div class="ac-cabeca">
+          <span class="ac-num">{a.numero}</span>
+          <h2 class="ac-tit"><a href={`/apostila/${a.numero}/${a.secoes[0].data.secao}/`}>{a.titulo}</a></h2>
+        </div>
+        <ol class="ac-secoes">
+          {a.secoes.map((s) => (
+            <li><a href={`/apostila/${a.numero}/${s.data.secao}/`}>{s.data.titulo}</a></li>
+          ))}
+        </ol>
+      </li>
+    ))}
+  </ol>
+</Base>

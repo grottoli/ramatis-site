@@ -1,0 +1,15 @@
+---
+import Base from "../layouts/Base.astro";
+---
+<Base titulo="Buscar" secao="busca">
+  <link slot="head" href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+  <header class="cabeca"><h1>Buscar</h1><p class="subtitulo">Procure por um assunto em todas as apostilas.</p></header>
+  <div id="busca" class="busca-wrap"></div>
+  <script is:inline src="/pagefind/pagefind-ui.js"></script>
+  <script is:inline>
+    window.addEventListener("DOMContentLoaded", () => {
+      new PagefindUI({ element: "#busca", showSubResults: true, showImages: false,
+        translations: { placeholder: "Ex.: perispírito, prâna, Atlântida", zero_results: "Nada encontrado para [SEARCH_TERM]." } });
+    });
+  </script>
+</Base>
