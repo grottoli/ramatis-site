@@ -31,39 +31,36 @@ Depois de extrair, **revise**: confira os títulos das seções, a divisão de p
 
 ## Fluxo de atualização (git → servidor)
 
-O projeto é versionado em git. O ciclo é: editar aqui → commitar → `push`; no servidor, `pull` + rebuild.
+Repositório: **https://github.com/grottoli/ramatis-site** (público). O ciclo é: editar no
+Windows → `push` → o servidor WSL puxa e reconstrói sozinho.
 
-**1. Conectar o repositório remoto (uma vez, na máquina de desenvolvimento):**
+**Enviar mudanças (Windows / PowerShell):**
+
+```powershell
+.\deploy\enviar.ps1 "descrição da mudança"   # faz add + commit + push
+```
+
+**Servidor (WSL Ubuntu, stack em /opt/stacks/ramatis-site, porta 8088):**
+O container é reconstruído automaticamente pelo cron do usuário, que roda o `atualizar.sh`
+a cada 5 min e só reconstrói quando há commit novo:
+
+```
+*/5 * * * * /opt/stacks/ramatis-site/deploy/atualizar.sh >> /home/grottoli/ramatis-update.log 2>&1
+```
+
+Para forçar a atualização na hora, sem esperar o cron:
 
 ```bash
-git remote add origin git@github.com:USUARIO/ramatis-site.git   # ou a URL do seu GitLab
-git push -u origin master
+cd /opt/stacks/ramatis-site && make atualizar
 ```
 
-**2. Primeira vez no servidor (/opt/stacks/ramatis):**
+**Primeira instalação num servidor novo:**
 
 ```bash
-git clone git@github.com:USUARIO/ramatis-site.git /opt/stacks/ramatis
-cd /opt/stacks/ramatis
-cp .env.example .env        # ajuste SITE_URL/porta e, se for publicar, o token do túnel
-make site                   # sobe em http://grotzdesk:8088
-```
-
-**3. A cada mudança:**
-
-```bash
-# aqui, na máquina de desenvolvimento
-git add -A && git commit -m "..." && git push
-
-# no servidor
-make atualizar              # git pull + rebuild, só se houve commit novo
-```
-
-**Atualização automática (opcional):** para o servidor puxar sozinho, agende o script no cron
-(`crontab -e`) — a cada 5 min, sem reconstruir à toa:
-
-```
-*/5 * * * * /opt/stacks/ramatis/deploy/atualizar.sh >> /var/log/ramatis-update.log 2>&1
+git clone https://github.com/grottoli/ramatis-site.git /opt/stacks/ramatis-site
+cd /opt/stacks/ramatis-site
+cp .env.example .env        # ajuste porta/SITE_URL e, se for publicar, o token do túnel
+make site
 ```
 
 Publicar com domínio, sem abrir portas: `docker compose --profile publico up -d --build` (token do Cloudflare Tunnel no `.env`). Sem domínio, para testar: `tailscale funnel --bg 8088`.
