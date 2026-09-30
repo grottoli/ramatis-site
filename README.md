@@ -63,7 +63,19 @@ cp .env.example .env        # ajuste porta/SITE_URL e, se for publicar, o token 
 make site
 ```
 
-Publicar com domínio, sem abrir portas: `docker compose --profile publico up -d --build` (token do Cloudflare Tunnel no `.env`). Sem domínio, para testar: `tailscale funnel --bg 8088`.
+### Publicar na internet (Cloudflare Tunnel)
+
+Domínio do projeto: **fraternidaderamatis.com** (registrado e gerido na Cloudflare).
+Publica sem abrir porta nenhuma no roteador — o túnel fala de dentro pra fora.
+
+1. Na Cloudflare (Zero Trust → Networks → Tunnels → Create a tunnel → *Cloudflared*):
+   crie o túnel, copie o **token** e adicione um **Public Hostname**
+   `fraternidaderamatis.com` → serviço `HTTP` → `site:8080`.
+2. No servidor, no `.env`:
+   `CLOUDFLARE_TUNNEL_TOKEN=<token>` e `SITE_URL=https://fraternidaderamatis.com`.
+3. Suba tudo: `make publicar` (site + túnel).
+
+Sem domínio, só para mostrar rápido: `tailscale funnel --bg 8088`.
 
 ## Estrutura
 
