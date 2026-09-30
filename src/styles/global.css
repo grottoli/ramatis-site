@@ -376,6 +376,42 @@ main { max-width: var(--larg); margin: 0 auto; padding: 0 1.5rem 5rem; }
   border-bottom: 2px solid var(--centelha);
 }
 .leitura tbody tr:last-child td { border-bottom: none; }
+/* variante com grade completa, para quadros comparativos de muitas colunas */
+.leitura .tabela-grade table { font-size: var(--t-xs); }
+.leitura .tabela-grade th, .leitura .tabela-grade td { border: 1px solid var(--linha); }
+.leitura .tabela-grade thead th { border-bottom: 2px solid var(--centelha); }
+.leitura .tabela-grade tbody th { color: var(--centelha); font-weight: 700; text-align: center; }
+.leitura .tabela-grade tbody tr:last-child td { border-bottom: 1px solid var(--linha); }
+.leitura .tabela-grade small { color: var(--tinta-leve); }
+.leitura .tabela-titulo { font-family: var(--sans); font-size: var(--t-s); font-weight: 700; text-align: center; color: var(--tinta-leve); margin: 1.8rem 0 0.6rem; }
+/* caixa de destaque (frases-síntese em quadro, no original) */
+.leitura .destaque {
+  font-family: var(--sans);
+  text-align: center;
+  font-weight: 600;
+  color: var(--tinta);
+  background: color-mix(in srgb, var(--acento) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--acento) 30%, transparent);
+  border-left: 3px solid var(--acento);
+  border-radius: 6px;
+  padding: 1rem 1.3rem;
+  margin: 1.8rem auto;
+  max-width: 40rem;
+  line-height: 1.45;
+}
+/* equação/fórmula em destaque (ex.: 1 Grande Plano = ...) */
+.leitura .formula {
+  font-family: var(--sans);
+  text-align: center;
+  font-size: var(--t-s);
+  color: var(--centelha);
+  background: color-mix(in srgb, var(--centelha) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--centelha) 35%, transparent);
+  border-radius: 6px;
+  padding: 0.8rem 1rem;
+  margin: 1.8rem auto;
+  max-width: 34rem;
+}
 
 /* grade de citações (Gênese / Jesus / ...) */
 .leitura .citacoes { margin: 1.8rem 0; }
