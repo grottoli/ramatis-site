@@ -15,7 +15,7 @@ const lista = await apostilas();
       <li class="apostila-card">
         <div class="ac-cabeca">
           <span class="ac-num">{a.numero}</span>
-          <h2 class="ac-tit"><a href={`/apostila/${a.numero}/${a.secoes[0].data.secao}/`}>{a.titulo}</a></h2>
+          <h2 class="ac-tit"><a href={`/apostila/${a.numero}/`}>{a.titulo}</a></h2>
         </div>
         <ol class="ac-secoes">
           {a.secoes.map((s) => (

@@ -536,6 +536,80 @@ main { max-width: var(--larg); margin: 0 auto; padding: 0 1.5rem 5rem; }
 /* índice lateral: número da apostila em destaque */
 .indice-apostila .ia-num { display: block; font-size: var(--t-xs); text-transform: uppercase; letter-spacing: 0.04em; color: var(--centelha); margin-bottom: 0.15rem; }
 
+/* mini-card de resumo no topo do índice lateral */
+.indice-apostila .ia-resumo {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0 0 1rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--centelha) 12%, var(--papel));
+  border: 1px solid color-mix(in srgb, var(--centelha) 32%, var(--linha));
+  text-decoration: none;
+  color: var(--tinta);
+}
+.indice-apostila .ia-resumo:hover { border-color: var(--centelha); color: var(--tinta); }
+.indice-apostila .iar-ic { color: var(--centelha); font-size: var(--t-m); line-height: 1; flex: none; }
+.indice-apostila .iar-txt { display: flex; flex-direction: column; min-width: 0; }
+.indice-apostila .iar-rot { font-size: var(--t-s); line-height: 1.2; }
+.indice-apostila .iar-val { font-size: var(--t-xs); color: var(--tinta-leve); }
+
+/* ====== capa da apostila ====== */
+.cabeca-capa { max-width: 46rem; margin: 2.5rem 0 2rem; }
+.cabeca-capa .trilha-de-pao { margin: 0 0 1rem; }
+.cabeca-capa .etiq { display: inline-flex; margin-bottom: 1.1rem; }
+.cabeca-capa h1 { font-size: var(--t-xl); font-weight: 500; letter-spacing: -0.015em; margin: 0 0 0.25em; }
+.cabeca-capa .subtitulo { font-family: var(--sans); font-size: var(--t-s); color: var(--tinta-leve); margin: 0; }
+
+/* bloco de resumo (áudio + vídeo) na capa */
+.resumo-apostila {
+  max-width: 46rem;
+  margin: 0 0 2rem;
+  padding: 1.25rem 1.3rem 1.4rem;
+  border: 1px solid var(--linha);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--papel) 60%, transparent);
+}
+.resumo-apostila .ra-rot {
+  font-family: var(--sans);
+  font-size: var(--t-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--centelha);
+  margin: 0 0 0.9rem;
+}
+.resumo-apostila .ra-media { display: grid; grid-template-columns: 1fr; gap: 1rem; align-items: start; }
+@media (min-width: 42rem) { .resumo-apostila .ra-media { grid-template-columns: 1.5fr 1fr; } }
+.resumo-apostila figure { margin: 0; }
+.resumo-apostila figcaption {
+  font-family: var(--sans);
+  font-size: var(--t-xs);
+  color: var(--tinta-leve);
+  margin: 0.5rem 0 0;
+}
+.resumo-apostila .ra-video video {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+  background: #000;
+  aspect-ratio: 16 / 9;
+}
+.resumo-apostila .ra-audio {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--centelha) 8%, var(--realce));
+  border: 1px solid color-mix(in srgb, var(--centelha) 25%, var(--linha));
+}
+.resumo-apostila .ra-audio figcaption { margin: 0; color: var(--centelha); }
+.resumo-apostila .ra-audio audio { width: 100%; }
+
+.botao-ler { margin-top: 1.5rem; }
+
 @media (max-width: 40rem) {
   .etiquetas { flex-direction: column; }
   .etiq { flex-direction: row; align-items: baseline; gap: 0.5rem; }

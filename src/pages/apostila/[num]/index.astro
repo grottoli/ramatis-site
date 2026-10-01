@@ -1,0 +1,68 @@
+---
+import Base from "../../../layouts/Base.astro";
+import { apostilas } from "../../../lib/acervo";
+import { resumoDe } from "../../../data/resumos";
+
+export async function getStaticPaths() {
+  const grupos = await apostilas();
+  return grupos.map((grupo) => ({
+    params: { num: grupo.numero },
+    props: { grupo },
+  }));
+}
+const { grupo } = Astro.props as { grupo: any };
+const resumo = resumoDe(grupo.numero);
+const primeira = grupo.secoes[0];
+---
+<Base titulo={`${grupo.titulo} — Apostila ${grupo.numero}`} secao="curso">
+  <header class="cabeca-capa">
+    <p class="trilha-de-pao"><a href="/curso/">O Curso</a></p>
+    <span class="etiq etiq-apostila">
+      <span class="etiq-rot">Apostila {grupo.numero}</span>
+      <span class="etiq-val">{grupo.modulo}</span>
+    </span>
+    <h1>{grupo.titulo}</h1>
+    <p class="subtitulo">{grupo.secoes.length} seções{resumo ? " · resumo em áudio e vídeo" : ""}</p>
+  </header>
+
+  {resumo && (
+    <section id="resumo" class="resumo-apostila" aria-label="Resumo da apostila">
+      <p class="ra-rot">Resumo da apostila</p>
+      <div class="ra-media">
+        {resumo.video && (
+          <figure class="ra-video">
+            <video controls preload="none" playsinline>
+              <source src={resumo.video} type="video/mp4" />
+              Seu navegador não reproduz o vídeo. <a href={resumo.video}>Baixar o vídeo</a>.
+            </video>
+            <figcaption>Vídeo-resumo</figcaption>
+          </figure>
+        )}
+        {resumo.audio && (
+          <figure class="ra-audio">
+            <figcaption>Áudio-resumo</figcaption>
+            <audio controls preload="none" src={resumo.audio}>
+              Seu navegador não reproduz o áudio. <a href={resumo.audio}>Baixar o áudio</a>.
+            </audio>
+          </figure>
+        )}
+      </div>
+    </section>
+  )}
+
+  <nav aria-label="Seções da apostila">
+    <p class="secao-titulo">Seções</p>
+    <ol class="sumario">
+      {grupo.secoes.map((s: any) => (
+        <li>
+          <a href={`/apostila/${grupo.numero}/${s.data.secao}/`}>
+            <span class="sum-num">{s.data.secao}</span>
+            <span class="sum-tit">{s.data.titulo}</span>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </nav>
+
+  <a class="botao botao-ler" href={`/apostila/${grupo.numero}/${primeira.data.secao}/`}>Começar a leitura →</a>
+</Base>
