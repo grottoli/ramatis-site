@@ -10,3 +10,10 @@ fontes/
 
 # Diretório de trabalho do assistente
 .claude/
+
+# Mídias dos resumos (áudio/vídeo): pesadas demais p/ o Git (acervo ~2 GB).
+# São servidas direto do servidor via volume (compose: ./media -> /srv/midia).
+# Cópia local p/ o dev fica em public/midia/ (não versionada).
+public/midia/
+# Diretório-fonte das mídias no servidor (montado como volume).
+/media/

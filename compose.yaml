@@ -12,6 +12,11 @@ services:
     restart: unless-stopped
     ports:
       - "${PORTA_LOCAL:-8088}:8080"   # acesso pela LAN/Tailscale
+    # Mídias dos resumos (áudio/vídeo) servidas de fora da imagem: pesadas
+    # demais p/ o Git/imagem. Ficam em ./media no servidor e aparecem em
+    # /midia/ no site (Caddy serve /srv, que inclui este mount).
+    volumes:
+      - ./media:/srv/midia:ro
     read_only: true
     tmpfs: [/tmp, /data, /config]
     security_opt: [no-new-privileges:true]
