@@ -27,8 +27,17 @@ export const resumos: Record<string, Resumo> = {
   "08": { audio: "/midia/08/08-resumo-audio.m4a", video: "/midia/08/08-resumo-video.mp4" },
   "09": { audio: "/midia/09/09-resumo-audio.m4a", video: "/midia/09/09-resumo-video.mp4" },
   "10": { audio: "/midia/10/10-resumo-audio.m4a", video: "/midia/10/10-resumo-video.mp4" },
-  // 11: mídia pronta; a página só renderiza quando o conteúdo da apostila 11 existir.
   "11": { audio: "/midia/11/11-resumo-audio.m4a", video: "/midia/11/11-resumo-video.mp4" },
+  "12": { audio: "/midia/12/12-resumo-audio.m4a", video: "/midia/12/12-resumo-video.mp4" },
+  "13": { audio: "/midia/13/13-resumo-audio.m4a", video: "/midia/13/13-resumo-video.mp4" },
+  "14": { audio: "/midia/14/14-resumo-audio.m4a", video: "/midia/14/14-resumo-video.mp4" },
+  "15": { audio: "/midia/15/15-resumo-audio.m4a", video: "/midia/15/15-resumo-video.mp4" },
+  // 16: sem mídia (PDF da apostila 16 não está no Drive).
+  "17": { audio: "/midia/17/17-resumo-audio.m4a", video: "/midia/17/17-resumo-video.mp4" },
+  "18": { audio: "/midia/18/18-resumo-audio.m4a", video: "/midia/18/18-resumo-video.mp4" },
+  "19": { audio: "/midia/19/19-resumo-audio.m4a", video: "/midia/19/19-resumo-video.mp4" },
+  // Mídia pronta mesmo p/ apostilas cujo conteúdo (src/content/apostilas/NN-*.md)
+  // ainda não existe — a capa só renderiza o bloco quando a apostila existir.
 };
 
 /** Resumo de uma apostila, se houver áudio ou vídeo cadastrado. */
