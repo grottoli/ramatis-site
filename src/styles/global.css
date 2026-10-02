@@ -616,3 +616,86 @@ main { max-width: var(--larg); margin: 0 auto; padding: 0 1.5rem 5rem; }
   .nav-secoes.topo .ns-tit { max-width: 8rem; }
   .ns-rot { font-size: 0.72rem; }
 }
+
+/* ========== Sobre Ramatís ========== */
+
+.sr-figura {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 2.5rem 0 1rem;
+  max-width: var(--medida);
+}
+.sr-figura img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  box-shadow: 0 2px 18px rgba(0, 0, 0, 0.18);
+  background: var(--realce);
+  object-fit: cover;
+}
+.sr-legenda {
+  font-family: var(--sans);
+  font-size: var(--t-xs);
+  color: var(--tinta-leve);
+  text-align: center;
+  max-width: 32rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.sr-artigo { max-width: var(--medida); }
+
+.sr-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 3rem 0 1rem;
+  border-top: 1px solid var(--linha);
+  padding-top: 1.4rem;
+}
+.sr-nav-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--linha);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--tinta);
+  background: color-mix(in srgb, var(--papel) 50%, transparent);
+  transition: border-color 0.2s ease;
+}
+.sr-nav-link:hover { border-color: color-mix(in srgb, var(--acento) 55%, var(--linha)); color: var(--acento); }
+.sr-nav-ant { text-align: left; }
+.sr-nav-prox { text-align: right; }
+.sr-nav-rot {
+  font-family: var(--sans);
+  font-size: var(--t-xs);
+  color: var(--tinta-leve);
+  letter-spacing: 0.04em;
+}
+.sr-nav-tit { font-family: var(--serif); font-size: var(--t-s); line-height: 1.3; }
+
+.sr-fonte {
+  font-family: var(--sans);
+  font-size: var(--t-xs);
+  color: var(--tinta-leve);
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--linha);
+}
+
+.sr-mensagem-meta {
+  display: block;
+  font-family: var(--sans);
+  font-size: var(--t-xs);
+  color: var(--tinta-leve);
+  margin-top: 0.3rem;
+}
+
+@media (max-width: 40rem) {
+  .sr-nav { grid-template-columns: 1fr; }
+  .sr-nav-prox { text-align: left; }
+}

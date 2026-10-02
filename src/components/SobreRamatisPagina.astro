@@ -1,0 +1,42 @@
+---
+import Base from "../layouts/Base.astro";
+import { topicos, type Topico } from "../data/sobre-ramatis";
+
+interface Props {
+  topicoId: string;
+  tituloHeader?: string; // sobrescreve o título do topico, se precisar
+}
+const { topicoId, tituloHeader } = Astro.props as Props;
+
+const atual = topicos.find((t) => t.id === topicoId)!;
+const i = topicos.indexOf(atual);
+const anterior = i > 0 ? topicos[i - 1] : undefined;
+const proxima = i < topicos.length - 1 ? topicos[i + 1] : undefined;
+
+const titulo = tituloHeader ?? atual.titulo;
+---
+<Base titulo={`${atual.rotulo} — Sobre Ramatís`} secao="sobre-ramatis">
+  <article class="sr-artigo">
+    <header class="cabeca">
+      <p class="trilha-de-pao"><a href="/sobre-ramatis/">Sobre Ramatís</a></p>
+      <h1>{titulo}</h1>
+    </header>
+
+    <div class="leitura"><slot /></div>
+
+    <nav class="sr-nav" aria-label="Navegação entre tópicos">
+      {anterior ? (
+        <a class="sr-nav-link sr-nav-ant" href={anterior.href}>
+          <span class="sr-nav-rot">← Anterior</span>
+          <span class="sr-nav-tit">{anterior.rotulo}</span>
+        </a>
+      ) : <span></span>}
+      {proxima ? (
+        <a class="sr-nav-link sr-nav-prox" href={proxima.href}>
+          <span class="sr-nav-rot">Próximo →</span>
+          <span class="sr-nav-tit">{proxima.rotulo}</span>
+        </a>
+      ) : <span></span>}
+    </nav>
+  </article>
+</Base>

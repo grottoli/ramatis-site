@@ -1,0 +1,46 @@
+---
+import Base from "../../layouts/Base.astro";
+import { topicos } from "../../data/sobre-ramatis";
+const sobreRamatis = topicos.filter((t) => t.grupo === "ramatis");
+const mais = topicos.filter((t) => t.grupo === "mais");
+---
+<Base titulo="Sobre Ramatís" secao="sobre-ramatis">
+  <header class="cabeca">
+    <p class="modulo-rot">Área · Sobre Ramatís</p>
+    <h1>Quem é Ramatís</h1>
+    <p class="subtitulo">Uma apresentação do Mestre espiritual Ramatís: sua biografia através de várias vidas, a imagem pela qual é reconhecido, a Fraternidade que lidera, seus discípulos e o pensamento universalista que marca sua obra.</p>
+  </header>
+
+  <section class="sr-figura" aria-label="Retrato psicopictografado de Ramatís">
+    <img src="/ramatis-medalhao.png" alt="Retrato psicopictografado de Ramatís" width="180" height="180" />
+    <p class="sr-legenda">Retrato psicopictografado recebido pela médium Dinorah Azevedo de Simas Enéas na década de 1950, presenteado a Hercílio Maes.</p>
+  </section>
+
+  <p class="secao-titulo">Temas</p>
+  <ul class="areas">
+    {sobreRamatis.map((t) => (
+      <li class="area-card">
+        <a href={t.href}>
+          <span class="area-tipo">{t.rotulo}</span>
+          <span class="area-tit">{t.titulo}</span>
+          <span class="area-desc">{t.descricao}</span>
+          <span class="area-meta"><span></span><span class="area-seta" aria-hidden="true">Ler →</span></span>
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <p class="secao-titulo">Mais</p>
+  <ul class="areas">
+    {mais.map((t) => (
+      <li class="area-card">
+        <a href={t.href}>
+          <span class="area-tipo">{t.rotulo}</span>
+          <span class="area-tit">{t.titulo}</span>
+          <span class="area-desc">{t.descricao}</span>
+          <span class="area-meta"><span></span><span class="area-seta" aria-hidden="true">Ler →</span></span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</Base>

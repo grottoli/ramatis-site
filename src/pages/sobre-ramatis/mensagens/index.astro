@@ -1,0 +1,34 @@
+---
+import Base from "../../../layouts/Base.astro";
+
+const mensagens = [
+  {
+    href: "/sobre-ramatis/mensagens/lema-da-casa/",
+    titulo: "Mensagem sobre o lema e missão da Casa",
+    data: "23 de março de 2003",
+    resumo:
+      "Mensagem recebida através de sensitiva autorizada, antes mesmo da transferência para a atual sede, convocando a Casa a ser luz, abrigo e porta aberta.",
+  },
+];
+---
+<Base titulo="Mensagens psicografadas de Ramatís" secao="sobre-ramatis">
+  <header class="cabeca">
+    <p class="trilha-de-pao"><a href="/sobre-ramatis/">Sobre Ramatís</a></p>
+    <h1>Mensagens psicografadas</h1>
+    <p class="subtitulo">Mensagens atribuídas a Ramatís recebidas pela Fraternidade Ramatís de Curitiba, em diferentes momentos da história da Casa.</p>
+  </header>
+
+  <ol class="sumario">
+    {mensagens.map((m) => (
+      <li>
+        <a href={m.href}>
+          <span class="sum-num">·</span>
+          <span class="sum-tit">
+            {m.titulo}
+            <span class="sr-mensagem-meta">{m.data} · {m.resumo}</span>
+          </span>
+        </a>
+      </li>
+    ))}
+  </ol>
+</Base>
