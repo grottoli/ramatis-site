@@ -4,11 +4,11 @@ import { apostilas } from "../../lib/acervo";
 import site from "../../data/site.json";
 const lista = await apostilas();
 ---
-<Base titulo="O Curso" secao="curso">
+<Base titulo="Preparação 3º Milênio" secao="curso">
   <header class="cabeca">
-    <p class="modulo-rot">Curso · 1º módulo · Introdução ao estudo das obras de Ramatís</p>
+    <p class="modulo-rot">Preparação 3º Milênio · 1º módulo · Introdução ao estudo das obras de Ramatís</p>
     <h1>{site.curso}</h1>
-    <p class="subtitulo">As apostilas do curso, na ordem original. Cada apostila é dividida em seções para leitura.</p>
+    <p class="subtitulo">As apostilas da preparação, na ordem original. Cada apostila é dividida em seções para leitura.</p>
   </header>
   <ol class="sumario-apostilas">
     {lista.map((a) => (

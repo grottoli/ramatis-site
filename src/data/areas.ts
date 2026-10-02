@@ -5,7 +5,7 @@
  */
 export type Area = {
   id: string;
-  tipo: string; // rótulo curto: "Curso", "Sobre", "Obras"…
+  tipo: string; // rótulo curto da área, ex.: "Preparação 3º Milênio", "Sobre Ramatís"…
   titulo: string;
   descricao: string;
   href: string;
@@ -24,7 +24,7 @@ export const areas: Area[] = [
   },
   {
     id: "curso",
-    tipo: "Curso",
+    tipo: "Preparação 3º Milênio",
     titulo: "Preparando-se para o Terceiro Milênio",
     descricao:
       "Introdução ao estudo das obras de Ramatís, em apostilas publicadas na íntegra e na ordem original em que foram concebidas.",
