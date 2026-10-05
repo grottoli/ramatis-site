@@ -1,0 +1,71 @@
+---
+import Base from "../../layouts/Base.astro";
+import { mediums, type Medium } from "../../data/obras";
+
+export async function getStaticPaths() {
+  return mediums.map((m) => ({
+    params: { medium: m.slug },
+    props: { medium: m },
+  }));
+}
+
+const { medium } = Astro.props as { medium: Medium };
+const i = mediums.indexOf(medium);
+const anterior = i > 0 ? mediums[i - 1] : undefined;
+const proxima = i < mediums.length - 1 ? mediums[i + 1] : undefined;
+---
+<Base titulo={`${medium.nome} — Obras`} secao="obras">
+  <article>
+    <header class="cabeca">
+      <p class="trilha-de-pao"><a href="/obras/">Obras</a></p>
+      <p class="modulo-rot">Obras recebidas através de</p>
+      <h1>{medium.nome}</h1>
+      <p class="subtitulo">{medium.descricao}</p>
+    </header>
+
+    <nav class="ob-sumario" aria-label="Obras deste médium">
+      <p class="secao-titulo">Nesta página</p>
+      <ol>
+        {medium.obras.map((o) => (
+          <li><a href={`#${o.slug}`}>{o.titulo}</a></li>
+        ))}
+      </ol>
+    </nav>
+
+    {medium.obras.map((o) => (
+      <section class="ob-obra" id={o.slug}>
+        <div class="ob-obra-capa">
+          <img src={o.capa} alt={`Capa do livro ${o.titulo}`} loading="lazy" width="180" height="268" />
+        </div>
+        <div class="ob-obra-corpo">
+          <h2>{o.titulo}</h2>
+          <p class="ob-sinopse">{o.sinopse}</p>
+          {o.descricao && <div class="leitura" set:html={o.descricao}></div>}
+          {o.capitulos && o.capitulos.length > 0 && (
+            <details class="ob-capitulos">
+              <summary>Capítulos</summary>
+              <ol>
+                {o.capitulos.map((c) => <li>{c}</li>)}
+              </ol>
+            </details>
+          )}
+        </div>
+      </section>
+    ))}
+
+    <nav class="sr-nav" aria-label="Navegação entre médiuns">
+      {anterior ? (
+        <a class="sr-nav-link sr-nav-ant" href={`/obras/${anterior.slug}/`}>
+          <span class="sr-nav-rot">← Médium anterior</span>
+          <span class="sr-nav-tit">{anterior.nome}</span>
+        </a>
+      ) : <span></span>}
+      {proxima ? (
+        <a class="sr-nav-link sr-nav-prox" href={`/obras/${proxima.slug}/`}>
+          <span class="sr-nav-rot">Próximo médium →</span>
+          <span class="sr-nav-tit">{proxima.nome}</span>
+        </a>
+      ) : <span></span>}
+    </nav>
+  </article>
+</Base>

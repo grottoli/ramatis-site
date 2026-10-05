@@ -1,0 +1,46 @@
+---
+import Base from "../../layouts/Base.astro";
+import { mediums, resenhas, totalObras } from "../../data/obras";
+---
+<Base titulo="Obras psicografadas" secao="obras">
+  <header class="cabeca">
+    <p class="modulo-rot">Área · Obras</p>
+    <h1>As obras psicografadas</h1>
+    <p class="subtitulo">{totalObras} obras atribuídas a Ramatís, agrupadas pelos médiuns que as receberam. Clique no nome do médium para ver a descrição de cada obra.</p>
+  </header>
+
+  {mediums.map((m) => (
+    <section class="ob-medium">
+      <header class="ob-medium-cab">
+        <h2><a href={`/obras/${m.slug}/`}>{m.nome}</a></h2>
+        <p class="ob-medium-desc">{m.descricao}</p>
+        <p class="ob-medium-meta"><a href={`/obras/${m.slug}/`}>Ver {m.obras.length} {m.obras.length === 1 ? "obra" : "obras"} →</a></p>
+      </header>
+      <ul class="ob-grade">
+        {m.obras.map((o) => (
+          <li class="ob-cartao">
+            <a href={`/obras/${m.slug}/#${o.slug}`}>
+              <img class="ob-capa" src={o.capa} alt={`Capa do livro ${o.titulo}`} loading="lazy" width="140" height="208" />
+              <span class="ob-tit">{o.titulo}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+
+  <section class="ob-medium">
+    <header class="ob-medium-cab">
+      <h2>Resenhas</h2>
+      <p class="ob-medium-desc">Estudos e apresentações da obra de Ramatís publicados por outros autores.</p>
+    </header>
+    <ul class="ob-grade">
+      {resenhas.map((r) => (
+        <li class="ob-cartao">
+          <img class="ob-capa" src={r.capa} alt={`Capa de ${r.titulo}`} loading="lazy" width="140" height="208" />
+          <span class="ob-tit">{r.titulo}</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>

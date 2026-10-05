@@ -38,7 +38,7 @@ export const areas: Area[] = [
     descricao:
       "Catálogo das obras de Ramatís, agrupadas pelos médiuns que as receberam — Hercílio Maes, América Paoliello, Jan Val Ellam, Maria Liguori, Norberto Peixoto e outros.",
     href: "/obras/",
-    disponivel: false,
+    disponivel: true,
   },
   {
     id: "hemeroteca",
