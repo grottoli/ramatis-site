@@ -847,3 +847,110 @@ main { max-width: var(--larg); margin: 0 auto; padding: 0 1.5rem 5rem; }
   .ob-obra { grid-template-columns: 1fr; gap: 1.5rem; }
   .ob-obra-capa { max-width: 180px; }
 }
+
+/* ========== Hemeroteca ========== */
+
+.hm-grupo {
+  margin: 3.5rem 0;
+  padding-top: 2rem;
+  border-top: 1px solid var(--linha);
+}
+.hm-grupo:first-of-type { border-top: 0; padding-top: 0; }
+
+.hm-grupo-cab { max-width: var(--medida); margin-bottom: 1.5rem; }
+.hm-grupo-cab h2 {
+  font-family: var(--serif);
+  font-size: var(--t-l);
+  font-weight: 500;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.01em;
+}
+.hm-grupo-desc {
+  font-family: var(--sans);
+  font-size: var(--t-s);
+  color: var(--tinta-leve);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.hm-itens {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1.2rem;
+  max-width: var(--larg);
+}
+.hm-item {
+  padding: 1.4rem 1.6rem;
+  border: 1px solid var(--linha);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--papel) 55%, transparent);
+  transition: border-color 0.2s ease;
+}
+.hm-item:hover { border-color: color-mix(in srgb, var(--acento) 40%, var(--linha)); }
+
+.hm-item-cab { margin-bottom: 0.6rem; }
+.hm-item-cab h3 {
+  font-family: var(--serif);
+  font-size: var(--t-m);
+  font-weight: 500;
+  line-height: 1.25;
+  margin: 0 0 0.3rem;
+}
+.hm-meta {
+  font-family: var(--sans);
+  font-size: var(--t-xs);
+  color: var(--tinta-leve);
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+.hm-veiculo { color: var(--centelha); font-weight: 500; }
+.hm-desc {
+  font-family: var(--serif);
+  font-size: var(--t-s);
+  color: var(--tinta);
+  line-height: 1.5;
+  margin: 0.6rem 0 1rem;
+}
+
+.hm-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+}
+.hm-botao {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--linha);
+  border-radius: 6px;
+  text-decoration: none;
+  font-family: var(--sans);
+  font-size: var(--t-s);
+  color: var(--tinta);
+  background: color-mix(in srgb, var(--papel) 40%, transparent);
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.hm-botao:hover { border-color: var(--acento); color: var(--acento); }
+.hm-botao-primario {
+  background: color-mix(in srgb, var(--acento) 15%, var(--papel));
+  border-color: color-mix(in srgb, var(--acento) 55%, var(--linha));
+  color: var(--tinta);
+}
+.hm-botao-leve {
+  border-style: dashed;
+  color: var(--tinta-leve);
+}
+.hm-pdf-ic {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  background: var(--centelha);
+  color: #1b1630;
+}

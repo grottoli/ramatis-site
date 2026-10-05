@@ -1,13 +1,14 @@
 ---
 import "../styles/global.css";
 import site from "../data/site.json";
-interface Props { titulo?: string; descricao?: string; secao?: "curso" | "sobre" | "busca" | "sobre-ramatis" | "obras" }
+interface Props { titulo?: string; descricao?: string; secao?: "curso" | "sobre" | "busca" | "sobre-ramatis" | "obras" | "hemeroteca" }
 const { titulo, descricao = site.descricaoSite, secao } = Astro.props;
 const tituloPagina = titulo ? `${titulo} — ${site.nome}` : `${site.nome} — ${site.lema}`;
 const links = [
   { href: "/sobre-ramatis/", rot: "Sobre Ramatís", id: "sobre-ramatis" },
   { href: "/curso/", rot: "Preparação 3º Milênio", id: "curso" },
   { href: "/obras/", rot: "Obras", id: "obras" },
+  { href: "/hemeroteca/", rot: "Hemeroteca", id: "hemeroteca" },
   { href: "/busca/", rot: "Buscar", id: "busca" },
   { href: "/sobre/", rot: "Sobre", id: "sobre" },
 ];

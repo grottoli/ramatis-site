@@ -45,9 +45,9 @@ export const areas: Area[] = [
     tipo: "Hemeroteca",
     titulo: "Reportagens e preciosidades",
     descricao:
-      "Matérias históricas em revistas (Planeta, Manchete, Argentina, Cristã Espírita), documentos antigos e cartas sobre Ramatís, preservados em PDF.",
+      "Matérias históricas em revistas (Planeta, Manchete, Argentina, Cristã Espírita), documentos antigos e prefácios psicografados sobre Ramatís, preservados em PDF e transcrição.",
     href: "/hemeroteca/",
-    disponivel: false,
+    disponivel: true,
   },
 ];
 

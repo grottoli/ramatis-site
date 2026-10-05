@@ -1,0 +1,48 @@
+---
+import Base from "../../layouts/Base.astro";
+import { grupos, totalItens } from "../../data/hemeroteca";
+---
+<Base titulo="Hemeroteca" secao="hemeroteca">
+  <header class="cabeca">
+    <p class="modulo-rot">Área · Hemeroteca</p>
+    <h1>Reportagens e preciosidades</h1>
+    <p class="subtitulo">{totalItens} itens preservados: matérias históricas em revistas, prefácios psicografados e documentos digitalizados sobre Ramatís.</p>
+  </header>
+
+  {grupos.map((g) => (
+    <section class="hm-grupo">
+      <header class="hm-grupo-cab">
+        <h2>{g.nome}</h2>
+        <p class="hm-grupo-desc">{g.descricao}</p>
+      </header>
+      <ul class="hm-itens">
+        {g.itens.map((item) => (
+          <li class="hm-item">
+            <div class="hm-item-cab">
+              <h3>{item.titulo}</h3>
+              <p class="hm-meta">
+                <span class="hm-veiculo">{item.veiculo}</span>
+                {item.data && <> · <span class="hm-data">{item.data}</span></>}
+              </p>
+            </div>
+            <p class="hm-desc">{item.descricao}</p>
+            <div class="hm-acoes">
+              {item.transcricao && (
+                <a class="hm-botao hm-botao-primario" href={item.transcricao}>Ler transcrição →</a>
+              )}
+              {item.pdf && (
+                <a class="hm-botao" href={item.pdf} target="_blank" rel="noopener">
+                  <span class="hm-pdf-ic" aria-hidden="true">PDF</span>
+                  <span>Abrir original</span>
+                </a>
+              )}
+              {item.cross && (
+                <a class="hm-botao hm-botao-leve" href={item.cross.href}>{item.cross.rot}</a>
+              )}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+</Base>
