@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import Trilha from "./Trilha.astro";
 import { topicos, type Topico } from "../data/sobre-ramatis";
 
 interface Props {
@@ -18,7 +19,7 @@ const titulo = tituloHeader ?? atual.titulo;
 <Base titulo={`${atual.rotulo} — Sobre Ramatís`} descricao={atual.descricao} tipo="article" secao="sobre-ramatis">
   <article class="sr-artigo">
     <header class="cabeca">
-      <p class="trilha-de-pao"><a href="/sobre-ramatis/">Sobre Ramatís</a></p>
+      <Trilha itens={[{ rot: "Sobre Ramatís", href: "/sobre-ramatis/" }, { rot: atual.rotulo }]} />
       <h1>{titulo}</h1>
     </header>
 

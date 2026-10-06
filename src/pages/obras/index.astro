@@ -1,9 +1,11 @@
 ---
 import Base from "../../layouts/Base.astro";
+import Trilha from "../../components/Trilha.astro";
 import { mediums, resenhas, totalObras } from "../../data/obras";
 ---
 <Base titulo="Obras psicografadas" descricao={`${totalObras} obras atribuídas a Ramatís, agrupadas pelos médiuns que as receberam — de Hercílio Maes aos demais sensitivos. Sinopses, descrições e capítulos de cada livro.`} secao="obras">
   <header class="cabeca">
+    <Trilha itens={[{ rot: "Obras" }]} />
     <p class="modulo-rot">Área · Obras</p>
     <h1>As obras psicografadas</h1>
     <p class="subtitulo">{totalObras} obras atribuídas a Ramatís, agrupadas pelos médiuns que as receberam. Clique no nome do médium para ver a descrição de cada obra.</p>

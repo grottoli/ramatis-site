@@ -1,9 +1,10 @@
 ---
 import Base from "../layouts/Base.astro";
+import Trilha from "../components/Trilha.astro";
 ---
 <Base titulo="Buscar" secao="busca">
   <link slot="head" href="/pagefind/pagefind-ui.css" rel="stylesheet" />
-  <header class="cabeca"><h1>Buscar</h1><p class="subtitulo">Procure por um assunto em todas as apostilas.</p></header>
+  <header class="cabeca"><Trilha itens={[{ rot: "Buscar" }]} /><h1>Buscar</h1><p class="subtitulo">Procure por um assunto em todas as apostilas.</p></header>
   <div id="busca" class="busca-wrap"></div>
   <script is:inline src="/pagefind/pagefind-ui.js"></script>
   <script is:inline>

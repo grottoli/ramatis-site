@@ -1,0 +1,58 @@
+---
+/**
+ * Trilha de navegação ("migalhas de pão" / breadcrumbs).
+ * Mostra o caminho desde o Início até a página atual, no topo do conteúdo.
+ *
+ * Uso: passar em `itens` os degraus a partir da seção (sem o Início, que é
+ * acrescentado automaticamente). O ÚLTIMO item é a página atual e é exibido
+ * como texto, sem link.
+ */
+interface Degrau {
+  rot: string;
+  href?: string;
+}
+interface Props {
+  itens: Degrau[];
+  pagefindIgnore?: boolean;
+}
+const { itens, pagefindIgnore = false } = Astro.props as Props;
+
+const todos: Degrau[] = [{ rot: "Início", href: "/" }, ...itens];
+
+// Dados estruturados BreadcrumbList (SEO)
+const listaSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: todos.map((d, i) => {
+    const url =
+      i === todos.length - 1
+        ? new URL(Astro.url.pathname, Astro.site).href
+        : d.href
+          ? new URL(d.href, Astro.site).href
+          : undefined;
+    return {
+      "@type": "ListItem",
+      position: i + 1,
+      name: d.rot,
+      ...(url ? { item: url } : {}),
+    };
+  }),
+};
+---
+<nav class="trilha-de-pao" aria-label="Você está aqui" data-pagefind-ignore={pagefindIgnore ? "" : undefined}>
+  <ol>
+    {todos.map((d, i) => {
+      const atual = i === todos.length - 1;
+      return (
+        <li>
+          {atual || !d.href ? (
+            <span aria-current={atual ? "page" : undefined}>{d.rot}</span>
+          ) : (
+            <a href={d.href}>{d.rot}</a>
+          )}
+        </li>
+      );
+    })}
+  </ol>
+</nav>
+<script type="application/ld+json" is:inline set:html={JSON.stringify(listaSchema)} />

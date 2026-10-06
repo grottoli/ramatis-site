@@ -1,10 +1,11 @@
 ---
 import Base from "../../../layouts/Base.astro";
+import Trilha from "../../../components/Trilha.astro";
 ---
 <Base titulo="Mensagem sobre o lema e missão da Casa — Sobre Ramatís" descricao="Mensagem atribuída a Ramatís, recebida em 23 de março de 2003 através de sensitiva autorizada, convocando a Casa a ser luz, abrigo e porta aberta." tipo="article" secao="sobre-ramatis">
   <article class="sr-artigo">
     <header class="cabeca">
-      <p class="trilha-de-pao"><a href="/sobre-ramatis/">Sobre Ramatís</a> · <a href="/sobre-ramatis/mensagens/">Mensagens</a></p>
+      <Trilha itens={[{ rot: "Sobre Ramatís", href: "/sobre-ramatis/" }, { rot: "Mensagens", href: "/sobre-ramatis/mensagens/" }, { rot: "Lema e missão da Casa" }]} />
       <h1>Mensagem sobre o lema e missão da Casa</h1>
       <p class="subtitulo">Recebida em 23 de março de 2003, através de sensitiva autorizada.</p>
     </header>

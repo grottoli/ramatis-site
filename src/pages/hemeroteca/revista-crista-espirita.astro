@@ -1,10 +1,11 @@
 ---
 import Base from "../../layouts/Base.astro";
+import Trilha from "../../components/Trilha.astro";
 ---
 <Base titulo="Ramatís — Revista Cristã Espírita — Hemeroteca" descricao="Reportagem de apresentação do mestre Ramatís publicada na Revista Cristã Espírita — documento histórico preservado na Hemeroteca." tipo="article" secao="hemeroteca">
   <article class="sr-artigo">
     <header class="cabeca">
-      <p class="trilha-de-pao"><a href="/hemeroteca/">Hemeroteca</a></p>
+      <Trilha itens={[{ rot: "Hemeroteca", href: "/hemeroteca/" }, { rot: "Revista Cristã Espírita" }]} />
       <p class="modulo-rot">Reportagem · Revista Cristã Espírita</p>
       <h1>Ramatís</h1>
       <p class="subtitulo">Apresentação do mestre Ramatís publicada na Revista Cristã Espírita.</p>

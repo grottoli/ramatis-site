@@ -239,7 +239,12 @@ main { max-width: var(--larg); margin: 0 auto; padding: 0 1.5rem 5rem; }
 
 .cabeca { max-width: var(--medida); margin: 3rem 0 2.5rem; }
 .trilha-de-pao { font-family: var(--sans); font-size: var(--t-s); color: var(--tinta-leve); margin: 0 0 1.2rem; }
-.trilha-de-pao a { color: var(--tinta-leve); }
+.trilha-de-pao ol { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.1rem 0.5rem; margin: 0; padding: 0; }
+.trilha-de-pao li { display: inline-flex; align-items: center; }
+.trilha-de-pao li + li::before { content: "›"; margin-right: 0.5rem; color: var(--tinta-leve); opacity: 0.6; }
+.trilha-de-pao a { color: var(--tinta-leve); text-decoration: none; }
+.trilha-de-pao a:hover { color: var(--acento); text-decoration: underline; }
+.trilha-de-pao [aria-current="page"] { color: var(--tinta); }
 .cabeca h1 { font-size: var(--t-xl); font-weight: 500; letter-spacing: -0.015em; margin: 0 0 0.3em; }
 .cabeca .subtitulo { font-size: var(--t-m); font-style: italic; color: var(--tinta-leve); margin: 0; }
 

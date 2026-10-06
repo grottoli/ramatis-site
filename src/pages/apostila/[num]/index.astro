@@ -1,5 +1,6 @@
 ---
 import Base from "../../../layouts/Base.astro";
+import Trilha from "../../../components/Trilha.astro";
 import { apostilas } from "../../../lib/acervo";
 import { resumoDe } from "../../../data/resumos";
 
@@ -20,7 +21,7 @@ const descricaoApostila =
 ---
 <Base titulo={`${grupo.titulo} — Apostila ${grupo.numero}`} descricao={descricaoApostila} secao="curso">
   <header class="cabeca-capa">
-    <p class="trilha-de-pao"><a href="/curso/">Preparação 3º Milênio</a></p>
+    <Trilha itens={[{ rot: "Preparação 3º Milênio", href: "/curso/" }, { rot: `Apostila ${grupo.numero}` }]} />
     <span class="etiq etiq-apostila">
       <span class="etiq-rot">Apostila {grupo.numero}</span>
       <span class="etiq-val">{grupo.modulo}</span>

@@ -1,5 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
+import Trilha from "../../components/Trilha.astro";
 import { mediums, type Medium } from "../../data/obras";
 
 export async function getStaticPaths() {
@@ -17,7 +18,7 @@ const proxima = i < mediums.length - 1 ? mediums[i + 1] : undefined;
 <Base titulo={`${medium.nome} — Obras`} descricao={medium.descricao} secao="obras">
   <article>
     <header class="cabeca">
-      <p class="trilha-de-pao"><a href="/obras/">Obras</a></p>
+      <Trilha itens={[{ rot: "Obras", href: "/obras/" }, { rot: medium.nome }]} />
       <p class="modulo-rot">Obras recebidas através de</p>
       <h1>{medium.nome}</h1>
       <p class="subtitulo">{medium.descricao}</p>

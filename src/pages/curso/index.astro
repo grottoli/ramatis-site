@@ -1,11 +1,13 @@
 ---
 import Base from "../../layouts/Base.astro";
+import Trilha from "../../components/Trilha.astro";
 import { apostilas } from "../../lib/acervo";
 import site from "../../data/site.json";
 const lista = await apostilas();
 ---
 <Base titulo="Preparação 3º Milênio" descricao={`${site.curso}: curso de introdução ao estudo das obras de Ramatís, da Fraternidade Ramatís de Curitiba. ${lista.length} apostilas publicadas na íntegra, na ordem original, divididas em seções para leitura.`} secao="curso">
   <header class="cabeca">
+    <Trilha itens={[{ rot: "Preparação 3º Milênio" }]} />
     <p class="modulo-rot">Preparação 3º Milênio · 1º módulo · Introdução ao estudo das obras de Ramatís</p>
     <h1>{site.curso}</h1>
     <p class="subtitulo">As apostilas da preparação, na ordem original. Cada apostila é dividida em seções para leitura.</p>

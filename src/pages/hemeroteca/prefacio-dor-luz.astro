@@ -1,10 +1,11 @@
 ---
 import Base from "../../layouts/Base.astro";
+import Trilha from "../../components/Trilha.astro";
 ---
 <Base titulo="Prefácio para “A Luz e a Dor Salvarão o Mundo” — Hemeroteca" descricao="Prefácio psicografado de Ramatís, recebido através de Hercílio Maes em 20 de janeiro de 1956, oferecido à obra do irmão José Fuzeira." tipo="article" secao="hemeroteca">
   <article class="sr-artigo">
     <header class="cabeca">
-      <p class="trilha-de-pao"><a href="/hemeroteca/">Hemeroteca</a></p>
+      <Trilha itens={[{ rot: "Hemeroteca", href: "/hemeroteca/" }, { rot: "Prefácio para “A Luz e a Dor Salvarão o Mundo”" }]} />
       <p class="modulo-rot">Prefácio psicografado · Livro de José Fuzeira · 20 de janeiro de 1956</p>
       <h1>Prefácio para “A Luz e a Dor Salvarão o Mundo”</h1>
       <p class="subtitulo">Mensagem de Ramatís, recebida através de Hercílio Maes, oferecida como prefácio à obra do irmão José Fuzeira.</p>

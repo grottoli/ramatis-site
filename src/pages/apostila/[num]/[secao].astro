@@ -1,5 +1,6 @@
 ---
 import Base from "../../../layouts/Base.astro";
+import Trilha from "../../../components/Trilha.astro";
 import NavSecoes from "../../../components/NavSecoes.astro";
 import { apostilas, todasSecoes, vizinhasNaApostila, trechoDescricao, type Secao } from "../../../lib/acervo";
 import { resumoDe } from "../../../data/resumos";
@@ -28,7 +29,7 @@ const descricaoSecao = trechoDescricao(secaoEntry.body ?? "");
   <div class="apostila-layout">
     <article data-pagefind-body class="apostila-artigo">
       <header class="cabeca-secao">
-        <p class="trilha-de-pao" data-pagefind-ignore><a href="/curso/">Preparação 3º Milênio</a></p>
+        <Trilha pagefindIgnore itens={[{ rot: "Preparação 3º Milênio", href: "/curso/" }, { rot: `Apostila ${d.apostila}`, href: `/apostila/${d.apostila}/` }, { rot: `Seção ${d.secao} — ${d.titulo}` }]} />
         <div class="etiquetas">
           <span class="etiq etiq-apostila">
             <span class="etiq-rot">Apostila {d.apostila}</span>
