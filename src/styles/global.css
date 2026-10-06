@@ -126,10 +126,8 @@ h3 { font-size: var(--t-m); margin: 1.9em 0 0.4em; }
   width: 2.2rem; height: 2.2rem;
   border-radius: 50%;
   object-fit: cover;
-  object-position: 50% 30%;
   border: 1px solid color-mix(in srgb, var(--centelha) 55%, transparent);
   box-shadow: 0 0 0 2px var(--papel-fundo), 0 0.2rem 0.8rem color-mix(in srgb, var(--acento) 30%, transparent);
-  filter: sepia(0.15);
 }
 .topo nav { display: flex; flex-wrap: wrap; gap: 1.3rem; font-family: var(--sans); }
 .topo nav a { color: var(--tinta-leve); text-decoration: none; font-size: 1.02rem; }
@@ -175,6 +173,14 @@ main { max-width: var(--larg); margin: 0 auto; padding: 0 1.5rem 5rem; }
   border: 1px solid color-mix(in srgb, var(--centelha) 55%, transparent);
   box-shadow: 0 0 0 6px color-mix(in srgb, var(--acento) 12%, transparent), 0 0.6rem 2rem color-mix(in srgb, var(--acento) 30%, transparent);
   filter: sepia(0.12);
+}
+.ceu-logo {
+  width: min(26rem, 80%);
+  height: auto;
+  margin: 0 auto 1.75rem;
+  display: block;
+  border-radius: 1rem;
+  box-shadow: 0 0.6rem 2rem color-mix(in srgb, var(--acento) 30%, transparent);
 }
 
 /* áreas de estudo (home): lista de conteúdos do site */
