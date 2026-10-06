@@ -32,3 +32,23 @@ export async function vizinhasNaApostila(id: string) {
     proxima: proxima && proxima.data.apostila === atual.data.apostila ? proxima : undefined,
   };
 }
+
+/**
+ * Gera um resumo curto e limpo a partir do texto markdown de uma seção,
+ * para usar como meta description (busca e compartilhamento).
+ * Remove marcações, imagens, links e espaços repetidos, e corta numa
+ * fronteira de palavra perto do limite.
+ */
+export function trechoDescricao(markdown: string, max = 160): string {
+  const texto = (markdown || "")
+    .replace(/^---[\s\S]*?---/, "")          // frontmatter, se houver
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, "")     // imagens
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")  // links -> texto
+    .replace(/[#>*_`~]/g, "")                 // marcações
+    .replace(/\s+/g, " ")                      // espaços/linhas repetidas
+    .trim();
+  if (texto.length <= max) return texto;
+  const corte = texto.slice(0, max);
+  const ultimoEspaco = corte.lastIndexOf(" ");
+  return (ultimoEspaco > max * 0.6 ? corte.slice(0, ultimoEspaco) : corte).trimEnd() + "…";
+}

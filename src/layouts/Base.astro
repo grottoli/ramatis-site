@@ -1,9 +1,44 @@
 ---
 import "../styles/global.css";
 import site from "../data/site.json";
-interface Props { titulo?: string; descricao?: string; secao?: "curso" | "sobre" | "busca" | "sobre-ramatis" | "obras" | "hemeroteca" }
-const { titulo, descricao = site.descricaoSite, secao } = Astro.props;
+interface Props {
+  titulo?: string;
+  descricao?: string;
+  secao?: "curso" | "sobre" | "busca" | "sobre-ramatis" | "obras" | "hemeroteca";
+  tipo?: "website" | "article";
+  imagem?: string;
+}
+const {
+  titulo,
+  descricao = site.descricaoSite,
+  secao,
+  tipo = "website",
+  imagem = "/ramatis-medalhao.png",
+} = Astro.props;
 const tituloPagina = titulo ? `${titulo} — ${site.nome}` : `${site.nome} — ${site.lema}`;
+const canonica = new URL(Astro.url.pathname, Astro.site);
+const imagemAbs = new URL(imagem, Astro.site);
+const dadosEstruturados = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": new URL("/#organizacao", Astro.site).href,
+      name: site.nome,
+      url: new URL("/", Astro.site).href,
+      logo: imagemAbs.href,
+      description: site.descricaoSite,
+    },
+    {
+      "@type": "WebSite",
+      "@id": new URL("/#site", Astro.site).href,
+      name: site.nome,
+      url: new URL("/", Astro.site).href,
+      inLanguage: "pt-BR",
+      publisher: { "@id": new URL("/#organizacao", Astro.site).href },
+    },
+  ],
+};
 const links = [
   { href: "/sobre-ramatis/", rot: "Sobre Ramatís", id: "sobre-ramatis" },
   { href: "/curso/", rot: "Preparação 3º Milênio", id: "curso" },
@@ -20,13 +55,28 @@ const links = [
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{tituloPagina}</title>
     <meta name="description" content={descricao} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href={canonica} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#1b1630" />
+
+    <meta property="og:site_name" content={site.nome} />
     <meta property="og:title" content={tituloPagina} />
     <meta property="og:description" content={descricao} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={tipo} />
     <meta property="og:locale" content="pt_BR" />
-    <meta name="theme-color" content="#1b1630" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <meta property="og:url" content={canonica} />
+    <meta property="og:image" content={imagemAbs} />
+    <meta property="og:image:width" content="400" />
+    <meta property="og:image:height" content="400" />
+    <meta property="og:image:alt" content={`Retrato psicopictografado de Ramatís — ${site.nome}`} />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={tituloPagina} />
+    <meta name="twitter:description" content={descricao} />
+    <meta name="twitter:image" content={imagemAbs} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(dadosEstruturados)} />
     <slot name="head" />
   </head>
   <body>

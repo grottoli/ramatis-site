@@ -13,8 +13,12 @@ export async function getStaticPaths() {
 const { grupo } = Astro.props as { grupo: any };
 const resumo = resumoDe(grupo.numero);
 const primeira = grupo.secoes[0];
+const descricaoApostila =
+  `Apostila ${grupo.numero} — ${grupo.titulo}: ${grupo.secoes.length} seções do curso ` +
+  `"Preparando-se para o Terceiro Milênio" da Fraternidade Ramatís de Curitiba` +
+  `${resumo ? ", com resumo em áudio e vídeo" : ""}.`;
 ---
-<Base titulo={`${grupo.titulo} — Apostila ${grupo.numero}`} secao="curso">
+<Base titulo={`${grupo.titulo} — Apostila ${grupo.numero}`} descricao={descricaoApostila} secao="curso">
   <header class="cabeca-capa">
     <p class="trilha-de-pao"><a href="/curso/">Preparação 3º Milênio</a></p>
     <span class="etiq etiq-apostila">

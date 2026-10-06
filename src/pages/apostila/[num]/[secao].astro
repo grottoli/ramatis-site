@@ -1,7 +1,7 @@
 ---
 import Base from "../../../layouts/Base.astro";
 import NavSecoes from "../../../components/NavSecoes.astro";
-import { apostilas, todasSecoes, vizinhasNaApostila, type Secao } from "../../../lib/acervo";
+import { apostilas, todasSecoes, vizinhasNaApostila, trechoDescricao, type Secao } from "../../../lib/acervo";
 import { resumoDe } from "../../../data/resumos";
 import { render } from "astro:content";
 
@@ -22,8 +22,9 @@ const { secaoEntry, grupo, anterior, proxima } = Astro.props as {
 const resumo = resumoDe(grupo.numero);
 const { Content } = await render(secaoEntry);
 const d = secaoEntry.data;
+const descricaoSecao = trechoDescricao(secaoEntry.body ?? "");
 ---
-<Base titulo={`${d.titulo} — ${d.apostilaTitulo}`} secao="curso">
+<Base titulo={`${d.titulo} — ${d.apostilaTitulo}`} descricao={descricaoSecao} tipo="article" secao="curso">
   <div class="apostila-layout">
     <article data-pagefind-body class="apostila-artigo">
       <header class="cabeca-secao">

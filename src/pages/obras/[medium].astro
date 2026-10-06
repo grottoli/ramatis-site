@@ -14,7 +14,7 @@ const i = mediums.indexOf(medium);
 const anterior = i > 0 ? mediums[i - 1] : undefined;
 const proxima = i < mediums.length - 1 ? mediums[i + 1] : undefined;
 ---
-<Base titulo={`${medium.nome} — Obras`} secao="obras">
+<Base titulo={`${medium.nome} — Obras`} descricao={medium.descricao} secao="obras">
   <article>
     <header class="cabeca">
       <p class="trilha-de-pao"><a href="/obras/">Obras</a></p>

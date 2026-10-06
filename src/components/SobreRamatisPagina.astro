@@ -15,7 +15,7 @@ const proxima = i < topicos.length - 1 ? topicos[i + 1] : undefined;
 
 const titulo = tituloHeader ?? atual.titulo;
 ---
-<Base titulo={`${atual.rotulo} — Sobre Ramatís`} secao="sobre-ramatis">
+<Base titulo={`${atual.rotulo} — Sobre Ramatís`} descricao={atual.descricao} tipo="article" secao="sobre-ramatis">
   <article class="sr-artigo">
     <header class="cabeca">
       <p class="trilha-de-pao"><a href="/sobre-ramatis/">Sobre Ramatís</a></p>
